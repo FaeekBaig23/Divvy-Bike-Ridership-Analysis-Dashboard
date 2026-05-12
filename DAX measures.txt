@@ -1,0 +1,25 @@
+# of Bike Rides = COUNTROWS('divvy_tripdata_2024')
+
+
+Avg Member Trip Duration (Minutes) =
+CALCULATE(
+    AVERAGE('divvy_tripdata_2024'[trip_duration_min]),
+    'divvy_tripdata_2024'[member_casual] = "member"
+)
+
+
+Avg Casual Trip Duration (Minutes) =
+CALCULATE(
+    AVERAGE('divvy_tripdata_2024'[trip_duration_min]),
+    'divvy_tripdata_2024'[member_casual] = "casual"
+)
+
+
+# of Stations =
+COUNTROWS(
+	UNION(
+		VALUES('divvy_tripdata_2024'[start_station_name]),
+		VALUES('divvy_tripdata_2024'[end_station_name]),
+	)
+)
+
